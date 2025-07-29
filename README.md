@@ -1,12 +1,62 @@
-# React + Vite
+# 🌾 AgriTech React App – Tailwind UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-blue?style=for-the-badge&logo=tailwind-css)
+![Vite](https://img.shields.io/badge/Vite-Fast%20Build-646CFF?style=for-the-badge&logo=vite)
+![Responsive](https://img.shields.io/badge/Responsive-Design-34D399?style=for-the-badge&logo=css3)
 
-Currently, two official plugins are available:
+AgriTech is a sleek, fast, and responsive landing page built using **React**, **Vite**, and **Tailwind CSS**. It showcases agricultural services and company details in a modern, modular layout.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔥 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- ✅ Modular components for scalability
+- ✅ Fully responsive UI using Tailwind CSS
+- ✅ Reusable `Button` and `Card` components
+- ✅ Multiple sections: Banner, Landscape, Trusted, Testimonials, Footer, etc.
+- ✅ Ready for deployment via Vercel, Netlify, etc.
+
+---
+
+## 🌐 Live Demo
+
+👉 **Coming Soon...**
+
+---
+
+## 🧾 Technologies Used
+
+- **React 18**
+- **Tailwind CSS 3**
+- **Vite (optional)**
+- **JavaScript (ES6+)**
+- **Responsive Web Design**
+
+---
+
+## 📁 Folder Structure
+
+```bash
+📦 src/
+├── 📁 component/                  # Main UI sections
+│   ├── AgricultureSection.jsx
+│   ├── Banner.jsx
+│   ├── Brances.jsx
+│   ├── Customer.jsx
+│   ├── Footer.jsx
+│   ├── LandScape.jsx
+│   ├── Line.jsx
+│   ├── NavBar.jsx
+│   ├── Trusted.jsx
+│   └── WhyUs.jsx
+│
+├── 📁 reusableComponent/          # Shared components
+│   ├── Button.jsx
+│   └── Card.jsx
+│
+├── App.js                         # Main app entry
+├── index.js                       # React DOM entry point
+├── index.css                      # Tailwind base styles
+├── tailwind.config.js             # Tailwind config
+└── package.json                   # Project metadata & scripts
