@@ -8,10 +8,10 @@ import Card from '../reusableComponent/Card';
 
 const AgricultureSection = () => {
   return (
-    <div className='mt-10 mb-5'>
-  <h2 className='mb-5 font-bold text-[42px] ms-5'>Agricultural Products</h2>
+    <div className='mt-25 mb-5'>
+  <h2 className='font-bold text-[42px] ms-5'>Agricultural Products</h2>
 
-  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center'>
+  <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center mt-7'>
     <Card productImg={productImg1} text="JF Barbed Wire- 270 GSM" salary="₹4,995.00" />
     <Card productImg={productImg2} text="FGC RustFree Fencing Poles" salary="₹499.00 – ₹1,589.00" />
     <Card productImg={productImg3} text="GI Poultry Mesh" salary="₹1,260.00 – ₹10,750.00" />
