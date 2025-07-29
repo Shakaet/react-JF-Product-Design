@@ -1,4 +1,4 @@
-# 🌾 AgriTech React App – Tailwind UI
+# 🌾 JF Product Design React App – Tailwind UI
 
 ![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react)
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-blue?style=for-the-badge&logo=tailwind-css)
@@ -21,7 +21,7 @@ AgriTech is a sleek, fast, and responsive landing page built using **React**, **
 
 ## 🌐 Live Demo
 
-👉 **Coming Soon...**
+👉 **https://jf-product-design.vercel.app/**
 
 ---
 
