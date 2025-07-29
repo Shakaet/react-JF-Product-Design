@@ -5,7 +5,7 @@
 ![Vite](https://img.shields.io/badge/Vite-Fast%20Build-646CFF?style=for-the-badge&logo=vite)
 ![Responsive](https://img.shields.io/badge/Responsive-Design-34D399?style=for-the-badge&logo=css3)
 
-AgriTech is a sleek, fast, and responsive landing page built using **React**, **Vite**, and **Tailwind CSS**. It showcases agricultural services and company details in a modern, modular layout.
+JF Product Design is a sleek, fast, and responsive landing page built using **React**, **Vite**, and **Tailwind CSS**. It showcases agricultural services and company details in a modern, modular layout.
 
 ---
 
