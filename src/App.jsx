@@ -2,6 +2,7 @@
 import './App.css'
 import AgricultureSection from './component/AgricultureSection'
 import Banner from './component/Banner'
+import Brances from './component/Brances'
 import Customer from './component/Customer'
 import LandScape from './component/LandScape'
 import Line from './component/Line'
@@ -22,6 +23,7 @@ function App() {
     <WhyUs></WhyUs>
     <Line></Line>
     <Customer></Customer>
+    <Brances></Brances>
   
 
     
