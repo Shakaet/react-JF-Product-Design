@@ -31,6 +31,7 @@ AgriTech is a sleek, fast, and responsive landing page built using **React**, **
 - **Tailwind CSS 3**
 - **Vite (React)**
 - **JavaScript (ES6+)**
+- **Framer-Motion (For Animation)**
 - **Responsive Web Design**
 
 ---
