@@ -1,106 +1,105 @@
-import { motion } from "framer-motion";
-import NavBar from './component/NavBar';
-import Banner from './component/Banner';
-import AgricultureSection from './component/AgricultureSection';
-import LandScape from './component/LandScape';
-import Trusted from './component/Trusted';
-import WhyUs from './component/WhyUs';
-import Line from './component/Line';
-import Customer from './component/Customer';
-import Brances from './component/Brances';
-import Footer from './component/Footer';
+import React, { useEffect, useState } from "react";
+import ChatWindow from "./component/ChatWindow";
+import ConversationList from "./component/ConversationList";
+import { connectSocket, disconnectSocket, socket } from "./socket";
+import "./App.css";
 
-const Home = () => {
+function App() {
+  const [conversationId, setConversationId] = useState(null);
+  const [userId, setUserId] = useState("user1");
+  const [userIdInput, setUserIdInput] = useState("user1");
+  const [status, setStatus] = useState(socket.connected ? "online" : "offline");
+
+  useEffect(() => {
+    connectSocket();
+    return () => disconnectSocket();
+  }, []);
+
+  useEffect(() => {
+    const handleConnect = () => setStatus("online");
+    const handleDisconnect = () => setStatus("offline");
+    const handleReconnectAttempt = () => setStatus("reconnecting");
+    const handleError = () => setStatus("error");
+
+    socket.on("connect", handleConnect);
+    socket.on("disconnect", handleDisconnect);
+    socket.io.on("reconnect_attempt", handleReconnectAttempt);
+    socket.on("connect_error", handleError);
+
+    return () => {
+      socket.off("connect", handleConnect);
+      socket.off("disconnect", handleDisconnect);
+      socket.io.off("reconnect_attempt", handleReconnectAttempt);
+      socket.off("connect_error", handleError);
+    };
+  }, []);
+
+  const handleUserSubmit = (event) => {
+    event.preventDefault();
+    const trimmed = userIdInput.trim();
+    if (!trimmed || trimmed === userId) return;
+
+    setConversationId(null);
+    setUserId(trimmed);
+  };
+
+  const statusLabel = {
+    online: "Connected",
+    reconnecting: "Reconnecting...",
+    error: "Connection error",
+    offline: "Offline",
+  }[status];
+
   return (
-    <div className="overflow-x-hidden overflow-y-hidden ms-1 mr-1">
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <NavBar />
-      </motion.div>
+    <div className="app-shell">
+      <aside className="sidebar">
+        <header className="sidebar__header">
+          <div>
+            <p className="eyebrow">JF Support Desk</p>
+            <h1>Live Conversations</h1>
+          </div>
+          <span className={`status-badge status-badge--${status}`}>{statusLabel}</span>
+        </header>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <Banner />
-      </motion.div>
+        <form className="user-form" onSubmit={handleUserSubmit}>
+          <label htmlFor="user-id-input">Your user ID</label>
+          <div className="user-form__controls">
+            <input
+              id="user-id-input"
+              value={userIdInput}
+              onChange={(event) => setUserIdInput(event.target.value)}
+              placeholder="e.g. user1"
+            />
+            <button type="submit">Set</button>
+          </div>
+          <p className="hint">
+            Use the same identifier as your backend auth so we can load the right conversations.
+          </p>
+        </form>
 
-      <motion.div
-        initial={{ x: -50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <AgricultureSection />
-      </motion.div>
+        <ConversationList
+          userId={userId}
+          activeConversationId={conversationId}
+          setConversationId={setConversationId}
+        />
+      </aside>
 
-      <motion.div
-        initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <LandScape />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <Trusted />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <WhyUs />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <Line />
-      </motion.div>
-
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-      >
-        <Customer />
-      </motion.div>
-
-      <motion.div
-        initial={{ y: 40, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <Brances />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <Footer />
-      </motion.div>
+      <main className="chat-panel">
+        {conversationId ? (
+          <ChatWindow key={conversationId} conversationId={conversationId} userId={userId} />
+        ) : (
+          <div className="empty-state">
+            <h2>Select a conversation</h2>
+            <p>
+              Choose a thread from the left or start a new one to begin exchanging real-time
+              messages.
+            </p>
+          </div>
+        )}
+      </main>
     </div>
   );
-};
+}
 
-export default Home;
+export default App;
+
