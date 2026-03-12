@@ -2,12 +2,13 @@ import React from 'react'
 import bannerImg from "../assets/bannerImg.png"
 import banner from "../assets/banner.png"
 import Button from '../reusableComponent/Button'
+// kkk //
 
 const Banner = () => {
   return (
     <div>
        
-
+   
        
       <div className="flex flex-col lg:flex-row items-center gap-10 bg-[#F2F4F6] px-4 py-6">
   {/* Banner with background and foreground image */}
